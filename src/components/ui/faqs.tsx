@@ -115,7 +115,7 @@ export default function FAQs() {
             collapsible
             className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-xl w-full border-2 border-blue-200/50 dark:border-slate-700/50 px-8 py-3 shadow-xl"
           >
-            {faqItems.map((item, index) => (
+            {faqItems.map((item) => (
               <AccordionItem
                 key={item.id}
                 value={item.id}
