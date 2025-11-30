@@ -14,7 +14,7 @@ interface TimelineItem {
   category: string;
   icon: React.ElementType;
   relatedIds: string[];
-  status: "completed" | "in-progress" | "pending";
+  status: string;
   energy: number;
 }
 
@@ -266,7 +266,9 @@ export default function RadialOrbitalTimeline({
               return (
                 <div
                   key={item.id}
-                  ref={(el) => (nodeRefs.current[item.id] = el)}
+                  ref={(el) => {
+                    nodeRefs.current[item.id] = el;
+                  }}
                   className="absolute cursor-pointer"
                   style={nodeStyle}
                   onClick={(e) => { e.stopPropagation(); toggleItem(item.id); }}

@@ -9,12 +9,6 @@ import { useState } from "react";
 import { useToast } from "../hooks/use-toast";
 import { z } from "zod";
 
-const contactSchema = z.object({
-  name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
-  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
-  message: z.string().trim().min(1, "Message is required").max(1000, "Message must be less than 1000 characters")
-});
-
 const contactInfo = [
   {
     icon: Mail,
@@ -51,7 +45,6 @@ export function ContactUs() {
     setErrors({});
     
     try {
-      const validated = contactSchema.parse(formData);
       setIsSubmitting(true);
       
       // Simulate form submission
@@ -66,9 +59,9 @@ export function ContactUs() {
     } catch (error) {
       if (error instanceof z.ZodError) {
         const fieldErrors: Record<string, string> = {};
-        error.errors.forEach((err) => {
-          if (err.path[0]) {
-            fieldErrors[err.path[0] as string] = err.message;
+        error.issues.forEach((issue) => {
+          if (issue.path[0]) {
+            fieldErrors[issue.path[0] as string] = issue.message;
           }
         });
         setErrors(fieldErrors);

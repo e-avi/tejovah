@@ -53,7 +53,6 @@ function GeometricPaths() {
 function FlowPaths() {
   const flowPaths = Array.from({ length: 12 }, (_, i) => {
     const amplitude = 50 + i * 10
-    const frequency = 0.01 + i * 0.002
     const offset = i * 60
     
     return {
@@ -100,8 +99,14 @@ function NeuralPaths() {
     id: `node-${i}`
   }))
 
-  const connections = []
-  nodes.forEach((node, i) => {
+    type Connection = {
+      id: string;
+      d: string;
+      delay: number;
+    };
+    
+    const connections: Connection[] = [];  
+    nodes.forEach((node, i) => {
     const nearbyNodes = nodes.filter((other, j) => {
       if (i === j) return false
       const distance = Math.sqrt(Math.pow(node.x - other.x, 2) + Math.pow(node.y - other.y, 2))
