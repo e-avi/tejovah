@@ -1,6 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./tabs";
 import { Layout, Pointer, Zap } from "lucide-react";
-
+import { useNavigate } from "react-router-dom";
 import { Badge } from "./badge";
 import { Button } from "./button";
 import { cn } from "../../lib/utils";
@@ -80,6 +80,12 @@ const Feature108 = ({
     },
   ],
 }: Feature108Props) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/contact");
+  };
+
   return (
     <section className="py-12 md:py-24 px-4 md:px-0">
       <div className="container mx-auto">
@@ -143,7 +149,8 @@ const Feature108 = ({
                     "bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500",
                     "hover:from-blue-600 hover:via-purple-600 hover:to-pink-600",
                     "text-white shadow-lg hover:shadow-xl transition-all"
-                  )} size="lg">
+                  )} onClick={handleClick}
+                  size="lg">
                     {tab.content.buttonText}
                   </Button>
                 </div>

@@ -19,7 +19,7 @@ const Index = () => {
       title: "Immersive front-ends engineered for conversion.",
       description:
         "We move beyond basic websites to build reactive, high-performance digital ecosystems. Using modern frameworks, we craft pixel-perfect interfaces that load instantly and retain users.",
-      buttonText: "See Our Work",
+      buttonText: "Work with Us",
       imageSrc:
         "https://images.unsplash.com/photo-1551650975-87deedd944c3",
       imageAlt: "Vibrant 3D geometric blocks forming an abstract structure",
@@ -34,7 +34,7 @@ const Index = () => {
       title: "Scalable backends that power complex operations.",
       description:
         "Off-the-shelf software has limits; our code doesn't. We engineer custom, fault-tolerant software architectures designed to handle complex logic and massive data loads with precision.",
-      buttonText: "View Case Studies",
+      buttonText: "Discuss Your Project",
       imageSrc:
         "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=800&auto=format&fit=crop",
       imageAlt: "Isometric 3D blocks representing software modularity",
