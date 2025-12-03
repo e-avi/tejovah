@@ -3,6 +3,7 @@ import { Layout, Pointer, Zap } from "lucide-react";
 
 import { Badge } from "./badge";
 import { Button } from "./button";
+import { cn } from "../../lib/utils";
 
 interface TabContent {
   badge: string;
@@ -80,52 +81,76 @@ const Feature108 = ({
   ],
 }: Feature108Props) => {
   return (
-    <section className="py-24">
+    <section className="py-12 md:py-24 px-4 md:px-0">
       <div className="container mx-auto">
-        <div className="flex flex-col items-center gap-4 text-center">
-          <Badge variant="outline" className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border-blue-200 dark:border-slate-600">{badge}</Badge>
-          <h1 className="max-w-2xl text-3xl font-semibold md:text-4xl text-slate-900 dark:text-white">
+        <div className="flex flex-col items-center gap-3 md:gap-4 text-center">
+          <Badge variant="outline" className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border-blue-200 dark:border-slate-600">
+            {badge}
+          </Badge>
+          <h1 className="max-w-2xl text-2xl font-semibold sm:text-3xl md:text-4xl text-slate-900 dark:text-white px-2">
             {heading}
           </h1>
-          <p className="text-slate-600 dark:text-slate-300">{description}</p>
+          <p className="text-sm md:text-base text-slate-600 dark:text-slate-300 max-w-lg px-4">
+            {description}
+          </p>
         </div>
-        <Tabs defaultValue={tabs[0].value} className="mt-16">
-          <TabsList className="container flex flex-col items-center justify-center gap-4 sm:flex-row md:gap-10 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-blue-200/50 dark:border-slate-700/50">
+        <Tabs defaultValue={tabs[0].value} className="mt-8 md:mt-16">
+          <TabsList className={cn(
+            "container flex flex-col items-center justify-center gap-2 sm:flex-row sm:gap-4 md:gap-10",
+            "bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-blue-200/50 dark:border-slate-700/50",
+            "p-2 sm:p-3 h-auto"
+          )}>
             {tabs.map((tab) => (
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                className="flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold text-slate-600 dark:text-slate-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500/10 data-[state=active]:via-purple-500/10 data-[state=active]:to-pink-500/10 data-[state=active]:text-slate-900 dark:data-[state=active]:text-white data-[state=active]:border-2 data-[state=active]:border-blue-500 dark:data-[state=active]:border-blue-400"
+                className={cn(
+                  "flex items-center gap-2 rounded-xl px-3 py-2 sm:px-4 sm:py-3",
+                  "text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300",
+                  "data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500/10 data-[state=active]:via-purple-500/10 data-[state=active]:to-pink-500/10",
+                  "data-[state=active]:text-slate-900 dark:data-[state=active]:text-white",
+                  "data-[state=active]:border-2 data-[state=active]:border-blue-500 dark:data-[state=active]:border-blue-400",
+                  "w-full sm:w-auto justify-center"
+                )}
               >
                 {tab.icon} {tab.label}
               </TabsTrigger>
             ))}
           </TabsList>
-          <div className="mx-auto mt-8 max-w-screen-xl rounded-2xl bg-white/70 dark:bg-slate-800/70 backdrop-blur-xl p-6 lg:p-16 border-2 border-blue-200/50 dark:border-slate-700/50 shadow-lg">
+          <div className={cn(
+            "mx-auto mt-6 md:mt-8 max-w-screen-xl rounded-xl md:rounded-2xl",
+            "bg-white/70 dark:bg-slate-800/70 backdrop-blur-xl",
+            "p-4 sm:p-6 lg:p-16 border-2 border-blue-200/50 dark:border-slate-700/50 shadow-lg"
+          )}>
             {tabs.map((tab) => (
               <TabsContent
                 key={tab.value}
                 value={tab.value}
-                className="grid place-items-center gap-20 lg:grid-cols-2 lg:gap-10"
+                className="grid place-items-center gap-8 lg:grid-cols-2 lg:gap-10"
               >
-                <div className="flex flex-col gap-5">
-                  <Badge variant="outline" className="w-fit bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border-blue-200 dark:border-slate-600">
+                <div className="flex flex-col gap-3 md:gap-5 text-center lg:text-left order-2 lg:order-1">
+                  <Badge variant="outline" className="w-fit mx-auto lg:mx-0 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border-blue-200 dark:border-slate-600">
                     {tab.content.badge}
                   </Badge>
-                  <h3 className="text-3xl font-semibold lg:text-5xl text-slate-900 dark:text-white">
+                  <h3 className="text-2xl font-semibold sm:text-3xl lg:text-5xl text-slate-900 dark:text-white">
                     {tab.content.title}
                   </h3>
-                  <p className="text-slate-600 dark:text-slate-300 lg:text-lg">
+                  <p className="text-sm md:text-base text-slate-600 dark:text-slate-300 lg:text-lg">
                     {tab.content.description}
                   </p>
-                  <Button className="mt-2.5 w-fit gap-2 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 text-white shadow-lg hover:shadow-xl transition-all" size="lg">
+                  <Button className={cn(
+                    "mt-2 md:mt-2.5 w-full sm:w-fit mx-auto lg:mx-0 gap-2",
+                    "bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500",
+                    "hover:from-blue-600 hover:via-purple-600 hover:to-pink-600",
+                    "text-white shadow-lg hover:shadow-xl transition-all"
+                  )} size="lg">
                     {tab.content.buttonText}
                   </Button>
                 </div>
                 <img
                   src={tab.content.imageSrc}
                   alt={tab.content.imageAlt}
-                  className="rounded-xl shadow-xl border-2 border-blue-200/50 dark:border-slate-700/50"
+                  className="rounded-lg md:rounded-xl shadow-xl border-2 border-blue-200/50 dark:border-slate-700/50 w-full max-w-md lg:max-w-none order-1 lg:order-2"
                 />
               </TabsContent>
             ))}
